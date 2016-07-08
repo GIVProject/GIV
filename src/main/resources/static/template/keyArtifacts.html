@@ -1,0 +1,59 @@
+<div class="row">
+	<div class="col-lg-3 ">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="background-color: #469686;">Key
+				artifacts</div>
+			<div class="panel-body">
+				<img src="images/keyartifacts.png"
+					class="img-rounded img-responsive"
+					alt="Global Innovation village logo" usemap="#artifactsmap">
+				<map name="artifactsmap">
+					<area shape="rect" coords="0,0,300,70" href="#/bmc" alt="BMC">
+					<area shape="rect" coords="0,0,150,170" href="#/mvp"
+						alt="Minimum viable product">
+					<area shape="rect" coords="150,100,300,170"
+						href="#/riskAdjustedNPV" alt="Risk adjutsed NPV">
+				</map>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-9">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="background-color: #469686;">Team
+				at Glance</div>
+			<div class="panel-body">
+				<div class="col-lg-4">
+
+					<img src="images/skillset.png" class="img-rounded img-responsive"
+						alt="Global Innovation village logo">
+				</div>
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-8" ng-controller="getTeamInfoController">
+							<p>Team members (9)</p>
+							<div class="row">
+
+								<div ng-repeat="row in teamInfo" class="col-md-3" align="center">
+									<img ng-src="{{row.profilePic}}"
+										class="img-rounded img-responsive"
+										alt="Global Innovation village logo" width="60" height="60">
+									<p>
+										<b>{{row.userName}}</b><br> {{row.skill}}
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<p>View All</p>
+							<img src="images/invite.png" class="img-rounded"
+								alt="Global Innovation village logo" width="38" height="38">
+							<p>
+								<b>Invite Collaborator</b>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

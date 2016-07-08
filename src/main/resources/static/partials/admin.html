@@ -1,0 +1,250 @@
+<div class="container-fluid">
+		<div ng-include="'template/header.html'"></div>
+		<hr
+			style="width: 100%; height: 5px; background-color: #469686; margin-top: 30px;" />
+		<div  ng-include="'template/logonInfo.html'"></div>
+
+		
+		
+
+<div class="container-fluid">
+	<div class="row"  ng-controller="reportModuleController">
+		
+		<div class="col-lg-4">
+			<div class="panel panel-default">
+				<div class="panel-heading" style="background-color: #469686;">
+					Filter</div>
+				<div class="panel-body" style="margin: 15px; padding: 0px;">
+					<div class="row">
+						<div class="col-lg-8">
+							<h5>Innovator</h5>
+						</div>
+						<div class="col-lg-4" style="padding-top: 15px;">
+							<!-- <a data-toggle="collapse" data-target="#collapse1" href="#/admin"><span
+								ng-class="'glyphicon glyphicon-chevron-down'"></span></a> -->
+							<a href="#/admin" ng-model="collapsed1" style="color:black;"
+								ng-click="collapsed1=!collapsed1"><span
+								ng-class="'glyphicon glyphicon-chevron-down'"></span></a>
+						</div>
+
+					</div>
+
+					<div ng-show="collapsed1">
+						<div ng-repeat="row in reportData">
+							<div class="checkbox"
+								style="margin-left: 20px; margin-top: 0px; padding: 0px;">
+								<label> <input type="checkbox" ng-model="value"
+									ng-true-value="'{{row.userName}}'"
+									ng-false-value="'Remove{{row.userName}}'"
+									ng-change="updatedFilterCriteria('innovator',value)">
+									{{row.userName }}
+								</label>
+							</div>
+						</div>
+					</div>
+					<hr style="margin: 0px; padding: 0px;" />
+				</div>
+				<div class="panel-body" style="margin: 15px; padding: 0px;">
+					<div class="row">
+						<div class="col-lg-8">
+							<h5>Current project by stage</h5>
+						</div>
+						<div class="col-lg-4" style="padding-top: 15px;">
+							<a href="#/admin" ng-model="collapsed2" style="color:black;"
+								ng-click="collapsed2=!collapsed2"><span
+								ng-class="'glyphicon glyphicon-chevron-down'"></span></a>
+						</div>
+					</div>
+					<div ng-show="collapsed2">
+						<div ng-repeat="stage in projectStage">
+							<div class="checkbox"
+								style="margin-left: 20px; margin-top: 0px; padding: 0px;">
+								<label><input type="checkbox" ng-model="value"
+									ng-true-value="'{{stage}}'" ng-false-value="'Remove{{stage}}'"
+									ng-change="updatedFilterCriteria('projectStage',value)">
+									{{stage}} </label>
+							</div>
+						</div>
+					</div>
+
+					<hr style="margin: 0px; padding: 0px;" />
+				</div>
+				<div class="panel-body" style="margin: 15px; padding: 0px;">
+					<div class="row">
+						<div class="col-lg-8">
+							<h5>NPV</h5>
+						</div>
+						<div class="col-lg-4" style="padding-top: 15px;">
+							<a href="#/admin" ng-model="collapsed3" style="color:black;"
+								ng-click="collapsed3=!collapsed3"><span
+								ng-class="'glyphicon glyphicon-chevron-down'"></span></a>
+						</div>
+					</div>
+					<div ng-show="collapsed3">
+
+						<div ng-repeat="npvValue in npvValues">
+							<div class="checkbox"
+								style="margin-left: 20px; margin-top: 0px; padding: 0px;">
+								<label><input type="checkbox" ng-model="value"
+									ng-true-value="'{{npvValue}}'"
+									ng-false-value="'Remove{{npvValue}}'"
+									ng-change="updatedFilterCriteria('npv',value)">
+									{{npvValue}} </label>
+							</div>
+						</div>
+
+					</div>
+					<hr style="margin: 0px; padding: 0px;" />
+				</div>
+				<div class="panel-body" style="margin: 15px; padding: 0px;">
+					<div class="row">
+						<div class="col-lg-8">
+							<h5>Configuration</h5>
+						</div>
+						<div class="col-lg-4" style="padding-top: 15px;">
+							<a href="#/admin" ng-model="collapsed4" style="color:black;"
+								ng-click="collapsed4=!collapsed4"><span
+								ng-class="'glyphicon glyphicon-chevron-down'"></span></a>
+						</div>
+					</div>
+					<div ng-show="collapsed4">
+
+						<div ng-repeat="configurationOption in configuration">
+							<div class="checkbox"
+								style="margin-left: 20px; margin-top: 0px; padding: 0px;">
+								<label><input type="checkbox" ng-model="value"
+									ng-true-value="'{{configurationOption}}'"
+									ng-false-value="'Remove{{configurationOption}}'"
+									ng-change="updatedFilterCriteria('productConfiguration',value)">
+									{{configurationOption |configOptions}} </label>
+							</div>
+						</div>
+
+					</div>
+						<hr style="margin: 0px; padding: 0px;" />
+				</div>
+			</div>
+		</div>
+		 <div class="col-lg-8">
+			<div class="panel panel-default">
+				
+					<div class="panel-heading" style="background-color: #469686;">
+					Projects</div>
+				 <div class="panel-body" style="margin: 15px; padding: 0px;">
+					<div ng-repeat="row in reportData | filter:search">
+
+						<div class="row">
+							<div class="col-lg-6"
+								style="margin-left: 20px; margin-top: 0px; padding: 0px;">
+								<div style="margin-left: 20px; margin-top: 0px; padding: 0px;">
+								<h5><a href="#/admin" ng-click="getProjectPage(row.projectId)" style="color:black;">{{row.projectName}}</a></h5>
+							
+								</div>
+								<hr style="margin: 0px; padding: 0px;" />
+							</div>
+							<div class="col-lg-5">
+								<button type="button" class="btn btn-default btn-xs" ng-click="progressProject(row.projectId)">Progress</button>
+								<button type="button" class="btn btn-primary btn-xs" ng-click="killProject(row.projectId)">Kill</button>
+								<button type="button" class="btn btn-success btn-xs" ng-click="flagProject(row.projectId)">Flag</button>
+							</div>
+						</div>
+					</div>
+					<hr style="margin: 0px; padding: 0px;" />
+				</div>
+
+				 <div class="panel-body" style="margin: 15px; padding: 0px;">
+					<div class="row"  ng-controller="pieChartCtrl">
+						<div class="col-lg-4">
+							<div class="form-group"
+								style="margin-left: 20px; margin-top: 0px; padding: 0px;">
+								<label for="sel1">Select list:</label> <select
+									class="form-control" id="sel1"
+									ng-change="getGraphData(optionValue)" ng-model="optionValue">
+									<option optionValue="1">Portfolio composition</option>
+									<option optionValue="2">Total risk by type</option>
+									<option optionValue="3">Project status by stage</option>
+									<option optionValue="4">Team composition by department</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-lg-7">
+							<div id="pie-chart">
+
+								<nvd3 options="options" data="getGraphData(optionValue)"></nvd3>
+
+							</div>
+						</div>
+
+					</div>
+					<hr style="margin: 0px; padding: 0px;" />
+				</div>
+				<div class="panel-body" style="margin: 15px; padding: 0px;">
+					<div class="row"  ng-controller="multiBarHorizontalChartCtrl">
+						<div class="col-lg-2">
+							<div class="form-group"
+								style="margin-left: 20px; margin-top: 0px; padding: 0px;">
+								<select class="form-control">
+									<option optionValue="1">Project</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-lg-2">
+							<div class="form-group"
+								style="margin-left: 20px; margin-top: 0px; padding: 0px;">
+								<select class="form-control">
+									<option optionValue="1">rNPV</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-lg-7">
+							<div id="barChart">
+								<nvd3 options="barOptions" data="getrNPVDataForGraph()"></nvd3>
+							</div>
+						</div>
+					</div>
+
+					<hr style="margin: 0px; padding: 0px;" />
+				</div>
+				<div class="panel-body" style="margin: 15px; padding: 0px;">
+					<div class="row">
+						<div class="col-lg-3">
+							<div class="form-group"
+								style="margin-left: 20px; margin-top: 0px; padding: 0px;">
+								<select class="form-control">
+									<option optionValue="1">Project progress</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-lg-1">
+							<h4>Vs</h4>
+						</div>
+						<div class="col-lg-2" align="left">
+							<div class="form-group"
+								style="margin-left: 20px; margin-top: 0px; padding: 0px;">
+								<select class="form-control">
+									<option optionValue="1">Time</option>
+								</select>
+							</div>
+						</div>
+
+					</div>
+
+
+					<div class="row"  ng-controller="multiBarHorizontalChartCtrl1">
+						<div class="col-lg-4"></div>
+						<div class="col-lg-7">
+							<div id="barChart">
+								<nvd3 options="barOptions1" data="getrNPVDataForGraph1()"></nvd3>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div> 
+
+	</div>
+</div>
+

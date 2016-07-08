@@ -1,0 +1,185 @@
+<div class="container-fluid">
+	<div ng-include="'template/header.html'"></div>
+	<hr
+		style="width: 100%; height: 5px; background-color: #469686; margin-top: 30px;" />
+	<div ng-include="'template/logonInfo.html'"></div>
+
+	<div ng-include="'template/projectList.html'"></div>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<!-- <div style="margin-top: 30px; margin-bottom: 10px;"> -->
+			<div ng-include="'template/stepTracker.html'"></div>
+			<!-- 	</div> -->
+			<div class="panel panel-default">
+				<div class="panel-heading" style="background-color: #469686;">
+					<div class="row">
+
+						<div class="col-lg-12">
+							<h4>
+								Notification | Key Artifacts | Team at glance <a href="#/ideaDescription"
+									ng-model="collapsed" ng-click="collapsed=!collapsed"
+									style="color: black;"><div
+										ng-class="'glyphicon glyphicon-chevron-down'"></div></a>
+							</h4>
+							<!-- <a href="#" ng-model="collapsed" ng-click="collapsed=!collapsed">Notification
+								</a> -->
+						</div>
+
+
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="container-fluid">
+						<div id="collapse1" class="panel" ng-show="collapsed">
+							<!-- <div ng-show="collapsed"> -->
+							<div class="row">
+
+
+								<div ng-include="'template/notification.html'"></div>
+
+								<div ng-include="'template/keyArtifacts.html'"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+
+				<div class="col-lg-12">
+					<h3 style="color: #469686">Idea Description</h3>
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				<div class="col-lg-12">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="row">
+
+								<div class="col-lg-2">
+									<div class="form-group">
+										<label for="vision">Vision:</label>
+									</div>
+
+								</div>
+								<div class="col-lg-10"
+									ng-controller="myProjectsVisionDescriptionController">
+									<div class="form-group">
+										<input type="text" class="form-control" id="vison"
+											ng-model="visionDescription"
+											ng-blur="visionDescriptionInputMethod(visionDescription)">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+
+								<div class="col-lg-2">
+									<div class="form-group">
+										<label for="idescription">Idea Description:</label>
+									</div>
+
+								</div>
+								<div class="col-lg-10"
+									ng-controller="myProjectsIdeaDescriptionController">
+									<div class="form-group">
+										<textarea class="form-control" rows="6" id="idea"
+											ng-model="ideaDescription"
+											ng-blur="ideaDescriptionInputMethod(ideaDescription)"></textarea>
+
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="col-lg-6" align="center">
+							<img src="images/skillset.png" class="img-rounded img-responsive"
+								alt="Global Innovation village logo">
+						</div>
+					</div>
+				</div>
+				<!-- <div class="col-lg-1"></div> -->
+			</div>
+			<hr
+				style="width: 100%; color: black; height: 1px; background-color: black;" />
+			<div class="row">
+
+				<div class="col-lg-12">
+					<h3 style="color: #469686;">Idea Configuration: What's New?</h3>
+				</div>
+
+			</div>
+
+			<div class="row"
+				ng-controller="myProjectsProductConfigurationController">
+				<div class="col-lg-1"></div>
+				<div class="col-lg-10">
+					<label class="radio-inline col-lg-1"> <input type="radio"
+						name="inlineradio1" id="radio1" value="new"
+						ng-model="productFeatureValue"
+						ng-change="productFeatureInputMethod(productFeatureValue)">New
+					</label> <label class="radio-inline col-lg-1"> <input type="radio"
+						name="inlineradio1" id="radio2" value="existing"
+						ng-model="productFeatureValue"
+						ng-change="productFeatureInputMethod(productFeatureValue)">Existing
+					</label> <label class="col-lg-3"> Product / Feature for </label> <label
+						class="radio-inline col-lg-1"> <input type="radio"
+						name="inlineradio2" id="radio3" value="new"
+						ng-model="customerValue"
+						ng-change="customerInputMethod(customerValue)">New
+					</label> <label class="radio-inline col-lg-1"> <input type="radio"
+						name="inlineradio2" id="radio4" value="existing"
+						ng-model="customerValue"
+						ng-change="customerInputMethod(customerValue)">Existing
+					</label> <label class="col-lg-2"> Customer in </label>
+				</div>
+			</div>
+			<div class="row"></div>
+			<div class="row"
+				ng-controller="myProjectsProductConfigurationController">
+				<div class="col-lg-1"></div>
+				<div class="col-lg-10">
+					<label class="radio-inline col-lg-1"> <input type="radio"
+						name="inlineradio3" id="radio1" value="new"
+						ng-model="marketOptionValue"
+						ng-change="marketConfigInputMethod(marketOptionValue)">New
+					</label> <label class="radio-inline col-lg-1"> <input type="radio"
+						name="inlineradio3" id="radio2" value="existing"
+						ng-model="marketOptionValue"
+						ng-change="marketConfigInputMethod(marketOptionValue)">Existing
+					</label> <label class="col-lg-3"> Markets, delivered in </label> <label
+						class="radio-inline col-lg-1"> <input type="radio"
+						name="inlineradio4" id="radio3" value="new"
+						ng-model="deliveryOptionValue"
+						ng-change="deliveryConfigInputMethod(deliveryOptionValue)">New
+					</label> <label class="radio-inline col-lg-1"> <input type="radio"
+						name="inlineradio4" id="radio4" value="existing"
+						ng-model="deliveryOptionValue"
+						ng-change="deliveryConfigInputMethod(deliveryOptionValue)">Existing
+					</label> <label class="col-lg-2"> Ways, using </label>
+				</div>
+			</div>
+			<div class="row"></div>
+			<div class="row"
+				ng-controller="myProjectsProductConfigurationController">
+				<div class="col-lg-1"></div>
+				<div class="col-lg-10">
+					<label class="radio-inline col-lg-1"> <input type="radio"
+						name="technology" id="radio1" value="new"
+						ng-model="technologyOptionValue"
+						ng-change="technologyConfigInputMethod(technologyOptionValue)">New
+					</label> <label class="radio-inline col-lg-1"> <input type="radio"
+						name="technology" id="radio2" value="existing"
+						ng-model="technologyOptionValue"
+						ng-change="technologyConfigInputMethod(technologyOptionValue)">Existing
+					</label> <label class="col-lg-3"> Technologies </label>
+
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12"></div>
+			</div>
+		</div>

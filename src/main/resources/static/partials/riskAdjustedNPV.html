@@ -1,0 +1,241 @@
+<div class="container-fluid">
+		<div ng-include="'template/header.html'"></div>
+		<hr
+			style="width: 100%; height: 5px; background-color: #469686; margin-top: 30px;" />
+		<div  ng-include="'template/logonInfo.html'"></div>
+
+		<div  ng-include="'template/projectList.html'"></div>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<!-- <div style="margin-top: 30px; margin-bottom: 10px;"> -->
+				<div  ng-include="'template/stepTracker.html'"></div>
+				<!-- 	</div> -->
+				<div  class="panel panel-default">
+					<div class="panel-heading" style="background-color: #469686;">
+						<div class="row">
+
+							<div class="col-lg-12">
+								<h4>Notification | Key Artifacts | Team at glance <a href="#/riskAdjustedNPV" ng-model="collapsed" ng-click="collapsed=!collapsed" style="color:black;"><div ng-class="'glyphicon glyphicon-chevron-down'"></div></a></h4> 
+								<!-- <a href="#" ng-model="collapsed" ng-click="collapsed=!collapsed">Notification
+								</a> -->
+							</div>
+
+
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="container-fluid">
+							<div id="collapse1" class="panel" ng-show="collapsed">
+								<!-- <div ng-show="collapsed"> -->
+								<div class="row">
+
+
+									<div ng-include="'template/notification.html'"></div>
+
+									<div ng-include="'template/keyArtifacts.html'"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+<div>
+<div class="row">
+	<div class="col-md-12">
+		<h3 style="color: #469686">Risk Adjusted Net Present Value</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-7">
+		<h4 style="color: #469686">Key assumptions and how they impact
+			NPV</h4>
+	</div>
+	<div class="col-md-2" ng-controller="BarCtrl">
+		<!-- <h4 style="color: #469686">Click to add financial data</h4> -->
+		<button type="button" class="btn btn-info btn-xs" data-toggle="modal"
+			data-target="#myModal">Click to add financial data</button>
+		<div id="myModal" class="modal fade" role="dialog"> 
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header" style="background-color: #469686;">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Revenue Vs Expenses</h4>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" role="form">
+						
+						<p class="col-md-4" align="left">Year</p>
+						<p class="col-md-4" align="left">Revenue</p>
+						<p class="col-md-4" align="left">Expenses</p>
+											
+						<div ng-repeat="row in costRows">
+						<div class="form-group">								
+								<div class="col-md-4">
+									<input type="text" class="form-control" name="year"
+										ng-model="row.year" />
+								</div>
+								<div class="col-md-4">
+									<input type="text" class="form-control" name="revenue"
+										ng-model="row.revenue" />
+								</div>
+								<div class="col-md-4">
+									<input type="text" class="form-control" name="expenses"
+										ng-model="row.cost" ng-blur="insertRow(row.year,row.revenue,row.cost,$last)" />
+								</div>
+							</div>
+						</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="submitData()">Save</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+	
+	<div class="col-md-3" ng-controller="cummulativeBarChartCtrl">
+		<!-- <h4 style="color: #469686">Click to add financial data</h4> -->
+		<button type="button" class="btn btn-info btn-xs" data-toggle="modal"
+			data-target="#cumulativeCostModal">Click to add cumulative actual cost</button>
+		<div id="cumulativeCostModal" class="modal fade" role="dialog"> 
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header" style="background-color: #469686;">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Click to add cumulative actual cost</h4>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" role="form">
+						
+						<p class="col-md-4" align="left">Year</p>
+						<p class="col-md-4" align="left">Month</p>
+						<p class="col-md-4" align="left">Actual cost</p>
+											
+						<div ng-repeat="row in rows">
+						<div class="form-group">								
+								<div class="col-md-4">
+									<input type="text" class="form-control" name="year"
+										ng-model="row.year" />
+								</div>
+								<div class="col-md-4">
+									<input type="text" class="form-control" name="month"
+										ng-model="row.month" />
+								</div>
+								<div class="col-md-4">
+									<input type="text" class="form-control" name="cost"
+										ng-model="row.cost" ng-blur="insertCumulativeCostRow(row.year,row.month,row.cost,$last)"/>
+								</div>
+							</div>
+						</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="submitData()">Save</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+	
+</div>
+<div class="row" ng-controller="RiskAdjustedNPVController">
+	<div class="col-md-11">
+		<div class="container-fluid" >
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Assumption</th>
+						<th>Level of risk (i.e probability of being wrong)</th>
+						<th>Impact (Low - 10% reduction in cash flow, Medium - 30% ,
+							High - 50%, Very High - 80%)</th>
+						<th>Total probable impact on cash flow (Reduction)</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr ng-repeat="row in table"
+						ng-class="getbgClass('{{row.colorofattribute}}')">
+
+						<td>{{row.ValueOfAttribute}}</td>
+						<td>{{row.uncertanity}}</td>
+						<td>{{row.impact}}</td>
+						<td>{{row.totalimpact}}</td>						
+						<!-- <td>{{ row.uncertanity+"#"+row.impact | calculateRisk}}</td> -->
+				</tbody>
+				<tfoot>
+					<tr><td colspan="3">Total </td><td>{{totalRisk}}</td></tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<h3>&nbsp;</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-3">
+
+		<div class="panel panel-success" ng-controller="BarCtrl">
+			<div class="panel-heading"
+				style="font: bolder; color: black; background-color: #469686;">Cost
+				Vs Revenue</div>
+			<div class="panel-body" style="height: 250px;">
+			<!-- 	<canvas id="bar" class="chart chart-bar" chart-data="data"
+					chart-legend="true" chart-labels="labels" chart-series="series">
+								</canvas> -->
+					<nvd3 options="options" data="data"></nvd3>	
+									
+			</div>
+
+
+		</div>
+	</div>
+
+
+	<div class="col-md-3">
+		<div class="panel panel-success" ng-controller="LineCtrl">
+			<div class="panel-heading"
+				style="font: bolder; color: black; background-color: #469686; vertical-align: bottom;">rNPV</div>
+			<div class="panel-body" style="height: 250px;">
+				<!-- <canvas id="line" class="chart chart-line" chart-data="data"
+					chart-labels="labels" chart-legend="false" chart-series="series"
+					chart-tension="0" chart-click="onClick"></canvas> -->
+						<nvd3 options="options" data="data"></nvd3>		
+			</div>
+
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="panel panel-success"
+			ng-controller="cummulativeBarChartCtrl">
+			<div class="panel-heading"
+				style="font: bolder; color: black; background-color: #469686;">Cumulative
+				actual cost</div>
+			<div class="panel-body"
+				style="height: 250px; vertical-align: bottom;">
+				<!-- <canvas id="bar" class="chart chart-bar" chart-data="data"
+					chart-legend="true" chart-labels="labels" chart-series="series">
+								</canvas> -->
+							<nvd3 options="options" data="data"></nvd3>		
+			</div>
+
+		</div>
+
+	</div>
+	<div class="col-md-2"></div>
+</div>
+</div>

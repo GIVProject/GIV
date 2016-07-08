@@ -1,0 +1,228 @@
+<div class="container-fluid">
+		<div ng-include="'template/header.html'"></div>
+		<hr
+			style="width: 100%; height: 5px; background-color: #469686; margin-top: 30px;" />
+		<div  ng-include="'template/logonInfo.html'"></div>
+
+		<div  ng-include="'template/projectList.html'"></div>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<!-- <div style="margin-top: 30px; margin-bottom: 10px;"> -->
+				<div  ng-include="'template/stepTracker.html'"></div>
+				<!-- 	</div> -->
+				<div  class="panel panel-default">
+					<div class="panel-heading" style="background-color: #469686;">
+						<div class="row">
+
+							<div class="col-lg-12">
+								<h4>Notification | Key Artifacts | Team at glance <a href="#/problemValidation" ng-model="collapsed" ng-click="collapsed=!collapsed" style="color:black;"><div ng-class="'glyphicon glyphicon-chevron-down'"></div></a></h4> 
+								<!-- <a href="#" ng-model="collapsed" ng-click="collapsed=!collapsed">Notification
+								</a> -->
+							</div>
+
+
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="container-fluid">
+							<div id="collapse1" class="panel" ng-show="collapsed">
+								<!-- <div ng-show="collapsed"> -->
+								<div class="row">
+
+
+									<div ng-include="'template/notification.html'"></div>
+
+									<div ng-include="'template/keyArtifacts.html'"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<h3 style="color: #469686">Problem Validation</h3>
+	</div>
+</div>
+<div class="row" ng-controller="ProblemValidatioTableController">
+	<div class="col-md-11">
+		<div class="container-fluid">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr><!-- glyphicon glyphicon-chevron-up glyphicon glyphicon-chevron-down  <span class="canvas-cell-image glyphicon"
+								ng-class="'glyphicon-' + cell.icon"></span> -->
+						<th>Assumption No.</th>
+						<th ng-click="sortData('CellName')">Canvas Section <div ng-class="getSortClass('CellName')"></div></th>
+						<th ng-click="sortData('validationexperiment')">Validation Experiment <div ng-class="getSortClass('validationexperiment')"></div></th>
+						<th ng-click="sortData('uncertanity')">Uncertainty <div ng-class="getSortClass('uncertanity')"></div></th>
+						<th ng-click="sortData('impact')">Impact <div ng-class="getSortClass('impact')"></div></th>
+						<th>Validation Plan/ Results</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr ng-repeat="row in table | orderBy:sortColumn:reverseSort" ng-class="getbgClass('{{row.colorofattribute}}')">
+
+						<td width="25%">{{row.ValueOfAttribute}}</td>
+						<td>{{cellDescription[row.CellName]}}</td>
+						<!-- <td ng-dblclick="editable();">{{row.validationexperiment}}									
+										
+										</td> -->
+
+						<!-- <td><span ng-click="myFunc($index)">{{row.validationexperiment}}
+												&nbsp;</span> <span ng-show="showMe[$index]"> <input
+												type="text" ng-model="newValue"
+												placeholder="Validation experiment"
+												ng-blur="editable($index,newValue,row.validationexperiment)" />
+												<button class="btn" type="submit">Save</button>
+										</span></td> -->
+
+						<td><span ng-click="validationExpInput($index)" ng-show="!validationExp[$index]">{{row.validationexperiment}}<span style="display:inline-block; width: 100px;"></span>
+								</span> <span ng-show="validationExp[$index]"> <!-- <div class="form-group"> -->
+								<div style="margin-top: 0;">
+									<!-- 	<label for="sel1">Select list:</label>  -->
+									<select
+										ng-change="validationExpMethod($index,row.validationexperiment,row.CellName,row.IndexOfRecord)"
+										ng-model="row.validationexperiment" class="form-control"
+										id="validationExpValue">
+										<option value="Facebook trend">Facebook trend</option>
+										<option value="Survey">Survey</option>
+										<option value="Others">Others</option>
+									</select>
+								</div>
+						</span></td>
+
+						<td><span ng-click="uncertanityInput($index)" ng-show="!uncertanity[$index]">{{row.uncertanity}}
+								<span style="display:inline-block; width: 70px;"></span></span> <span ng-show="uncertanity[$index]"> <!-- <div class="form-group"> -->
+								<div style="margin-top: 0;">
+									<!-- 	<label for="sel1">Select list:</label> uncertanityInputMethod -->
+									<select
+										ng-change="uncertanityInputMethod($index,row.uncertanity,row.CellName,row.IndexOfRecord)"
+										ng-model="row.uncertanity" class="form-control"
+										id="uncertanityInp">
+										<!-- <select
+														class="form-control" id="uncertanityInp"> -->
+										<option>High</option>
+										<option>Medium</option>
+										<option>Low</option>
+									</select>
+								</div>
+						</span></td>
+						<!-- <td>{{row.impact}}</td> -->
+
+						<td><span ng-click="impactInput($index)" ng-show="!impact[$index]">{{row.impact}}
+								<span style="display:inline-block; width: 70px;"></span></span> <span ng-show="impact[$index]"> <!-- <div class="form-group"> -->
+								<div style="margin-top: 0;">
+									<!-- 	<label for="sel1">Select list:</label>  -->
+									<select
+										ng-change="impactInputMethod($index,row.impact,row.CellName,row.IndexOfRecord)"
+										ng-model="row.impact" class="form-control" id="impactInp">
+										<!-- <select
+														class="form-control" id="impactInp"> -->
+										<option>High</option>
+										<option>Medium</option>
+										<option>Low</option>
+									</select>
+								</div>
+						</span></td>
+
+						<!-- <td>{{row.validationplan}}</td> -->
+
+						<td><span ng-click="validationplanInput($index)"><span
+								ng-show="!validationplan[$index]">{{row.validationplan}}</span>
+								<span style="display:inline-block; width: 70px;"></span></span> <span ng-show="validationplan[$index]"> <input
+								max="40" type="text" ng-model="row.validationplan"
+								placeholder="Validation plan"
+								ng-blur="updatevalidationplanInputMethod($index,row.validationplan,row.CellName,row.IndexOfRecord)" />
+
+						</span></td>
+
+
+
+						<!-- <tr class="validated">
+										<td>1</td>
+										<td>Value Proposition</td>
+										<td>Survey</td>
+										<td>Low</td>
+										<td>Low</td>
+										<td>http://www.myprojectpage.com/value-prop-assumption-1</td>
+									</tr>
+									<tr class="inprogress">
+										<td>3</td>
+										<td>Customer Segment</td>
+										<td>Survey</td>
+										<td>High</td>
+										<td>High</td>
+										<td>http://www.myprojectpage.com/value-prop-assumption-1</td>
+									</tr>
+									<tr class="pending">
+										<td>5</td>
+										<td>Customer Segment</td>
+										<td>FB Trends</td>
+										<td>Medium</td>
+										<td>Medium</td>
+										<td>http://www.myprojectpage.com/value-prop-assumption-1</td>
+									</tr>
+									<tr class="validated">
+										<td>1</td>
+										<td>Survey</td>
+										<td>Survey</td>
+										<td>High</td>
+										<td>High</td>
+										<td>http://www.myprojectpage.com/value-prop-assumption-1</td>
+									</tr> -->
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<h3>Custom, curated, content specific to project stage</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="background-color: #469686;">Learn
+				From Our Experts</div>
+			<div class="panel-body">What are my validation experiment
+				options?</div>
+			<hr style="margin: 0; padding: 0;" />
+			<div class="panel-body">How do I quantify uncertainty and
+				impact?</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="background-color: #469686;">Recommended
+				Tools</div>
+			<div class="panel-body">Google Keyword Planner</div>
+			<hr style="margin: 0; padding: 0;" />
+			<div class="panel-body">Facebook Trends</div>
+			<hr style="margin: 0; padding: 0;" />
+			<div class="panel-body">Instapage</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="background-color: #469686;">How
+				do I?</div>
+			<div class="panel-body">
+				<img alt="" src="images/ic_play.png" style="margin-right: 10px;">Create
+				landing page tests?
+			</div>
+			<hr style="margin: 0; padding: 0;" />
+			<div class="panel-body">
+				<img alt="" src="images/ic_play.png" style="margin-right: 10px;">Conduct
+				surveys?
+			</div>
+			<hr style="margin: 0; padding: 0;" />
+			<div class="panel-body">
+				<img alt="" src="images/ic_play.png" style="margin-right: 10px;">Use
+				an empathy map?
+			</div>
+		</div>
+	</div>
+</div>

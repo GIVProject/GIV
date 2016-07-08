@@ -1,0 +1,11 @@
+<div class="row">
+	<div class="col-lg-12" ng-controller="myProjectsProjectListController">
+		<ul class="nav nav-tabs">
+			<li ng-repeat="row in projectInfo" class="{{row.activeProject}}">
+				<a data-toggle="tab" style="color:#0000FF;" href="{{row.projectId}}"
+				ng-click="reloadPage(row.projectId)">{{row.projectName}}</a>
+			</li>
+		</ul>
+	</div>
+
+</div>

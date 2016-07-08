@@ -1,0 +1,138 @@
+<div class="container-fluid">
+		<div ng-include="'template/header.html'"></div>
+		<hr
+			style="width: 100%; height: 5px; background-color: #469686; margin-top: 30px;" />
+		<div  ng-include="'template/logonInfo.html'"></div>
+
+		<div  ng-include="'template/projectList.html'"></div>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<!-- <div style="margin-top: 30px; margin-bottom: 10px;"> -->
+				<div  ng-include="'template/stepTracker.html'"></div>
+				<!-- 	</div> -->
+				<div  class="panel panel-default">
+					<div class="panel-heading" style="background-color: #469686;">
+						<div class="row">
+
+							<div class="col-lg-12">
+								<h4>Notification | Key Artifacts | Team at glance <a href="#/mvp" ng-model="collapsed" ng-click="collapsed=!collapsed" style="color:black;"><div ng-class="'glyphicon glyphicon-chevron-down'"></div></a></h4> 
+								<!-- <a href="#" ng-model="collapsed" ng-click="collapsed=!collapsed">Notification
+								</a> -->
+							</div>
+
+
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="container-fluid">
+							<div id="collapse1" class="panel" ng-show="collapsed">
+								<!-- <div ng-show="collapsed"> -->
+								<div class="row">
+
+
+									<div ng-include="'template/notification.html'"></div>
+
+									<div ng-include="'template/keyArtifacts.html'"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<h3 style="color: #469686">Minimum viable product</h3>
+	</div>
+</div>
+<div class="container-fluid" ng-controller="mvpDataController">
+	<div class="row">
+		<dl class="dl-horizontal"></dl>
+		<dt>
+			<div class="col-md-6">
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe class="embed-responsive-item"
+						ng-src="{{data.linktoDocument | trusted}}"></iframe>
+
+				</div>
+			</div>
+		</dt>
+		<dt>
+			<div class="col-md-6">
+				{{data.documentDescription}}
+			</div>
+		</dt>
+
+	</div>
+</div> 
+
+<div class="row" style="padding-top: 30px;"
+	ng-controller="mvpTableDataController">
+	<div class="col-md-11">
+		<div class="container-fluid" style="padding-bottom: 0;">
+			<div class="panel panel-success">
+				<div class="panel-heading"
+					style="font: bolder; color: black; background-color: #469686;">
+					<table style="margin: 0; padding: 0; border: 0;">
+						<tr style="margin: 0; padding: 0;">
+							<td width="60%" style="margin: 0; padding: 0;">Previous five
+								uploads</td>
+							<td width="20%" style="margin: 0; padding: 0;" align="left">
+								<!-- Trigger the modal with a button -->
+								<button type="button" data-toggle="modal" data-target="#myModal">Add
+									new</button> <!-- Modal -->
+								<div id="myModal" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+
+										<!-- Modal content-->
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<h4 class="modal-title">Please enter the document
+													information</h4>
+											</div>
+											<div class="modal-body">
+												<input type="text" id="documentTitle" class="form-control"
+													placeholder="Docment title" ng-model="documentTitle"
+													required autofocus><br> <input type="text"
+													id="documentLink" class="form-control"
+													placeholder="Docment link" ng-model="documentLink"><br>
+												<textarea row="10" id="documentDescription"
+													class="form-control" placeholder="Docment description"
+													ng-model="documentDescription"></textarea>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default"
+													data-dismiss="modal"
+													ng-click=inserMVPData(documentTitle,documentLink,documentDescription)>Submit</button>
+												<button type="button" class="btn btn-default"
+													data-dismiss="modal">Close</button>
+											</div>
+										</div>
+
+									</div>
+								</div>
+
+
+							</td>
+							<td width="20%" style="margin: 0; padding: 0;" align="right">View
+								all</td>
+
+						</tr>
+
+					</table>
+				</div>
+
+				<table class="table table-bordered">
+
+					<tbody>
+						<tr ng-repeat="row in list">
+							<td><a href="#/mvp" style="color:#0000FF;"
+								ng-click="updateValues(row.documentTitle,row.linktoDocument,row.documentDescription)">
+									{{row.documentTitle}}</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

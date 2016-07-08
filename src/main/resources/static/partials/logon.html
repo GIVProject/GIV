@@ -1,0 +1,165 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+<title>GIV Sign in page</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="jslibrary/bs/css/bootstrap.min.css">
+<link rel="stylesheet" href="script\css\font-awesome.min.css">
+<link rel="stylesheet" href="script\css\giv.css">
+<link
+	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+	rel="stylesheet">
+
+
+
+
+<link rel="stylesheet" href="jslibrary\css\font-awesome.min.css">
+<script type="text/javascript" src="jslibrary/angular/angular.js"></script>
+<script type="text/javascript" src="jslibrary\angular\http.js"></script>
+<script type="text/javascript" src="script\app\application.js"></script>
+<script type="text/javascript" src="jslibrary/jq/jquery-1.12.2.min.js"></script>
+<script type="text/javascript" src="jslibrary/bs/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="script/statusRetrievalContoller.js"></script>
+
+</head>
+<body ng-app="logonModule"> -->
+
+<!-- glyphicon glyphicon-user -->
+<!-- <div class="jumbotron"> -->
+<div class="container">
+	<!-- 	<div class="jumbotron"> -->
+	<div class="row">
+		<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+		<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+			<h1 align="center" style="font-size: 36px;">Welcome to myCo
+				Innovation Village</h1>
+		</div>
+		<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+	</div>
+	<div class="row" ng-controller="logonController">
+		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"
+			style="padding-top: 8%;">
+			
+			 <div ng-show="error" class="alert alert-danger">
+    <strong>Error!</strong> Please enter valid credentials.
+  </div>
+			
+			
+			<form class="form-signin" role="form"
+				ng-submit="validate(credentials)">
+				<div class="form-group has-feedback">
+					<div>
+						<input type="text" class="form-control" id="userName"
+							placeholder="Enter user name" ng-model="credentials.username">
+						<i class="glyphicon glyphicon-user form-control-feedback"></i>
+					</div>
+				</div>
+				<div class="form-group has-feedback right">
+					<!-- 	<label class="control-label col-sm-1" for="pwd">Password:</label> -->
+					<div align="left">
+						<span class="glyphicon glyphicon-lock  form-control-feedback"></span>
+						<input type="password" class="form-control" id="pwd"
+							ng-model="credentials.password" placeholder="Enter password">
+					</div>
+				</div>
+				<div class="form-group">
+					<div>
+						<button class="btn btn-md btn-primary btn-block" type="submit">Sign
+							in</button>
+					</div>
+
+				</div>
+
+				<!-- <div class="form-group">
+								 <div>
+									<button class="btn btn-md btn-primary btn-block" type="submit" ng-click="validate(username,password)">Sign
+										in</button>
+								</div>
+								
+								<div>
+									<a class="btn btn-md btn-block" style="background-color: #469686; font-color:#ffffff;" href="layout.html">Sign in</a>
+								</div>
+							</div> -->
+				<div class="form-group">
+					<div>
+						<div class="checkbox">
+							<label><input type="checkbox">Remember me</label>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+			<img src="images/ic_seperator.png" class="img-responsive">
+		</div>
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"
+			style="padding-top: 10%;">
+			<div class="text-primary">
+				<i class="fa fa-linkedin"></i> Sign In with LinkedIn.
+
+			</div>
+		</div>
+		<!-- 	<div class="col-md-2"></div> -->
+	</div>
+</div>
+
+<!-- <hr
+				style="width: 100%; color: black; height: 1px; background-color: black;" /> -->
+<div class="row" ng-controller="statusRetrievalController">
+	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<h2 align="center">
+					<span class="label label-default">{{activeProjectCount}}</span>
+				</h2>
+			</div>
+			<div class="panel-footer">
+				<p class="h3" align="center">Active projects in 2016</p>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<h2 align="center">
+					<span class="label label-default">{{graduatedProjectCount}}</span>
+				</h2>
+			</div>
+			<div class="panel-footer">
+				<p class="h3" align="center">Graduated projects in 2015</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<h2 align="center">
+					<span class="label label-default">{{usercount}}</span>
+				</h2>
+			</div>
+			<div class="panel-footer">
+				<p class="h3" align="center">Active users</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+		<h6 align="center">Powered By</h6>
+		<div class="col-md-12" align="center">
+			<img src="images/ic_logo.png" class="img-rounded" height="120"
+				width="120" alt="Global Innovation village logo">
+		</div>
+	</div>
+
+	<!-- </div> -->
+
+</div>
+<!-- </div> -->
+<!-- </body>
+</html> -->

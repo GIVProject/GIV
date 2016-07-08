@@ -1,0 +1,82 @@
+<!-- <div flex-md layout="column">
+	<md-toolbar layout="column" style="min-height : 0;">
+	<h4 style="padding-left: 30px; padding-bottom: 10px; margin-bottom: 0;">Enter
+		the assumption</h4>
+	</md-toolbar>
+	<md-divider></md-divider>
+	<div flex-md layout="row" style="padding-left:30;">
+		<md-sidenav>
+		<md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
+
+
+		</md-sidenav>
+		<md-content flex-md id="content"> <md-dialog
+			aria-label="Enter the assumpation"> <md-dialog-content>
+		Enter the assumpation <input type="textarea" ng-model="lastAddedItem"
+			value="{{lastAddedItem}}"> </md-dialog-content> <md-dialog-actions>
+		<md-button class="md-primary" ng-click="closeDialog()">
+		Close </md-button> </md-dialog-actions> </md-dialog> </md-content>
+	</div>
+</div> -->
+<!-- <div id="layoutContainer">
+	<md-dialog> <md-grid-list md-row-height="250px"
+		md-gutter="1em" md-cols="5"> <md-grid-tile>Enter
+	the assumption</md-grid-tile> <md-content> Enter the assumpation <input
+		type="textarea" row="5" ng-model="lastAddedItem"
+		value="{{lastAddedItem}}">
+	<br>
+	<md-button class="md-fab md-primary" ng-click="closeDialog('red')"
+		aria-label="AddClient">Red </md-button> <md-button
+		class="md-fab md-primary" ng-click="closeDialog('blue')"
+		aria-label="AddClient">Blue </md-button> <md-button
+		class="md-fab md-primary" ng-click="closeDialog('green')"
+		aria-label="AddClient">Green </md-button> <md-button
+		class="md-fab md-primary" ng-click="closeDialog('white')"
+		aria-label="AddClient">White </md-button>   <md-icon md-svg-src="content/images/68448.svg" style="width: 48px; height: 48px;"></md-icon>
+
+      <md-tooltip md-visible="demo.showTooltip">
+        Add Client
+      </md-tooltip>       <br />
+
+	</md-content> </md-grid-list> </md-dialog>
+</div> -->
+
+
+<div id="layoutContainer" style="height:600px; width: 700px;">
+	<md-dialog>
+<md-dialog-content layout-padding>
+
+<md-subheader style="color: red;">Please enter the assumption</md-subheader>
+	<!-- <div layout="column">
+		<div flex>&nbsp;</div>
+		<p class="md-display-1">Please enter the assumption</p>
+
+	</div>
+ -->	
+	<div layout="column">
+		<md-input-container md-no-float> 
+			<label>Please enter the assumption</label>
+			<textarea required name="userName" ng-model="lastAddedItem" rows="5" value="{{lastAddedItem}}"></textarea>
+		</md-input-container>
+	</div>
+	
+	
+	
+	<!-- <div flex layout="row">
+		<p class="md-display-1">Please select status</p>
+	</div> -->
+	</md-dialog-content>
+	
+	<md-dialog-actions>
+	<div flex layout="row">
+		<md-button class="inprogress box" ng-click="closeDialog('#f9f4cc')"
+			aria-label="AddClient">In Progress </md-button>
+		<md-button class="validated box" ng-click="closeDialog('#d3f3dc')"
+			aria-label="AddClient">Validated </md-button>
+		<md-button class="pending box" ng-click="closeDialog('#f8ded7')"
+			aria-label="AddClient">Pending </md-button>
+	</div>
+	</md-dialog-actions> </md-dialog>
+</div>
+
+

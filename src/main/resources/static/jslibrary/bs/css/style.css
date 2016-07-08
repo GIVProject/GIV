@@ -1,0 +1,39 @@
+.canvas-table {
+  table-layout: fixed;
+  overflow: auto;  
+}
+
+td.tall-cell {
+  height: 20em;
+  word-wrap: break-word
+}
+
+td.short-cell {
+  height: 10em;
+  word-wrap: break-word
+}
+
+.canvas-cell-image {
+  float: left;
+  padding-right:5px;
+  padding-top: 2px;
+}
+
+.add-item-button span {
+  padding-bottom: 3px;
+}
+
+.add-item-button {
+  display: none;
+}
+
+.canvas-cell:hover .add-item-button {
+  display: block;
+}
+
+.canvas-cell-item .normal {
+
+}
+
+.canvas-cell-item .editing {
+}

@@ -1,0 +1,30 @@
+<md-dialog aria-label="Enter assumptions"  ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools" style="background-color: #469686;">
+        <h2>Business model canvas</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+      <!--   <h2>Please enter your assumption</h2> -->
+      <md-input-container> 
+			<label>Please enter the assumption</label>
+			<textarea required name="userName" ng-model="lastAddedItem" rows="15" cols="60" value="{{lastAddedItem}}" md-autofocus></textarea>
+		</md-input-container>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+    <md-button class="inprogress" ng-click="closeDialog('#f9f4cc')"
+			aria-label="AddClient">In Progress </md-button>
+		<md-button class="validated" ng-click="closeDialog('#d3f3dc')"
+			aria-label="AddClient">Validated </md-button>
+		<md-button class="pending" ng-click="closeDialog('#f8ded7')"
+			aria-label="AddClient">Pending </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

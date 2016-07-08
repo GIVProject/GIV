@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="navbar-brand">
+		<img src="images/ic_logo.png" class="img-rounded" height="120"
+			width="120" alt="Global Innovation village logo">
+	</div>
+	<div class="col-md-9 col-lg-9" align="left">
+		<h2 align="left" style="padding-top: 20px">Innovation Village @
+			myCo</h2>
+	</div>
+	<div class="col-lg-1" align="right"
+		ng-controller="getProfileImageController">
+		<img ng-src="{{imagePath}}" class="img-circle" vspace="15"
+			style="background-color: #469686; border-width: 10px;" border="5"
+			alt="Global Innovation village logo" width="80" height="80">
+	</div>
+	<div class="col-lg-1" align="right"
+		ng-controller="logoffController">
+		<button type="button" class="btn btn-info btn-xs" ng-click="logoffMethod()"
+			>Logoff</button>
+	</div>
+</div>
